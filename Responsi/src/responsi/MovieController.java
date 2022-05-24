@@ -43,9 +43,13 @@ public class MovieController {
                 double a = Double.parseDouble(alur);
                 double p = Double.parseDouble(penokohan);
                 double ak = Double.parseDouble(akting);
-                double n = (a+p+ak)/3;
-                String nilai = Double.toString(n);
-                movieModel.insertMovie(judul, alur, penokohan, akting, nilai);
+                if(((a>=0)&&(a<=5))&&((p>=0)&&(p<=5))&&((ak>=0)&&(ak<=5))){
+                    double n = (a+p+ak)/3;
+                    String nilai = Double.toString(n);
+                    movieModel.insertMovie(judul, alur, penokohan, akting, nilai);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Input antara 0 sampai 5");
+                }
          
                 String dataMovie[][] = movieModel.readMovie();
                 movieView.tabel.setModel((new JTable(dataMovie, movieView.namaKolom)).getModel());
@@ -62,10 +66,14 @@ public class MovieController {
                 double a = Double.parseDouble(alur);
                 double p = Double.parseDouble(penokohan);
                 double ak = Double.parseDouble(akting);
-                double n = (a+p+ak)/3;
-                String nilai = Double.toString(n);
-                movieModel.updateMovie(judul, alur, penokohan, akting, nilai);
-                
+                if(((a>=0)&&(a<=5))&&((p>=0)&&(p<=5))&&((ak>=0)&&(ak<=5))){
+                    double n = (a+p+ak)/3;
+                    String nilai = Double.toString(n);
+                    movieModel.updateMovie(judul, alur, penokohan, akting, nilai);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Input antara 0 sampai 5");
+                }
+                    
                 String dataMovie[][] = movieModel.readMovie();
                 movieView.tabel.setModel((new JTable(dataMovie, movieView.namaKolom)).getModel());
             }
