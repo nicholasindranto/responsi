@@ -70,23 +70,24 @@ public class MovieController {
                 movieView.tabel.setModel((new JTable(dataMovie, movieView.namaKolom)).getModel());
             }
         });
-        /*
+        
         movieView.btnReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                String dataMovie[][] = movieModel.readMovie();
-                movieView.tabel.setModel((new JTable(dataMovie, movieView.namaKolom)).getModel());
+                movieView.tfJudul.setText("");
+                movieView.tfAlur.setText("");
+                movieView.tfPenokohan.setText("");
+                movieView.tfAkting.setText("");
             }
         });
-        */
-        movieView.tabel.addMouseListener(new MouseAdapter() {
+        
+        movieView.btnDelete.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mousePressed(e);
+            public void actionPerformed(ActionEvent e) {
                 int baris = movieView.tabel.getSelectedRow();
                 int kolom = movieView.tabel.getSelectedColumn(); // ga kepake sekarang
 
-                String dataterpilih = movieView.tabel.getValueAt(baris, 1).toString();
+                String dataterpilih = movieView.tabel.getValueAt(baris, 0).toString();
 
                 System.out.println(dataterpilih);
 

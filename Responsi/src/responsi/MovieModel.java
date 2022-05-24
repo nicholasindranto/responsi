@@ -72,7 +72,6 @@ public class MovieModel {
             }
             
             if (jmlData==0) {
-                //query = "INSERT INTO movie ('judul', 'alur', 'penokohan', 'akting', 'nilai') VALUES('"+judul+"','"+alur+"','"+penokohan+"','"+akting+"', '"+nilai+"')";
                 query = "INSERT INTO `movie` (`judul`, `alur`, `penokohan`, `akting`, `nilai`) VALUES ('"+judul+"', '"+alur+"', '"+penokohan+"', '"+akting+"', '"+nilai+"')";
                 statement = (Statement) koneksi.createStatement();
                 statement.executeUpdate(query); //execute querynya
@@ -98,7 +97,7 @@ public class MovieModel {
             }
            
             if (jmlData==1) {
-               query = "UPDATE movie SET alur='" + alur + "', penokohan='" + penokohan + "', akting='" + akting + "', nilai='" + nilai + "' WHERE judul=" + judul;
+               query = "UPDATE `movie` SET `judul` = '"+judul+"', `alur` = '"+alur+"', `penokohan` = '"+penokohan+"', `akting` = '"+akting+"', `nilai` = '"+nilai+"' WHERE `movie`.`judul` = '"+judul+"';";
                statement = (Statement) koneksi.createStatement();
                statement.executeUpdate(query); //execute querynya
                System.out.println("Berhasil diupdate");
@@ -116,7 +115,7 @@ public class MovieModel {
         int jmlData = 0;
         try{
             statement = koneksi.createStatement();
-            String query = "Select * from movie";
+            String query = "SELECT * FROM `movie`";
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()){ 
                 jmlData++;
@@ -132,7 +131,7 @@ public class MovieModel {
     
     public void deleteMovie (String judul) {
         try{
-            String query = "DELETE FROM movie WHERE judul = '"+judul+"'";
+            String query = "DELETE FROM movie WHERE `movie`.`judul` = '"+judul+"'";
             statement = koneksi.createStatement();
             statement.executeUpdate(query);
             JOptionPane.showMessageDialog(null, "Berhasil Dihapus");
